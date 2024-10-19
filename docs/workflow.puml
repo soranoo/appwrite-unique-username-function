@@ -1,0 +1,43 @@
+@startuml
+title Check Username Availability
+
+start
+
+:Check whether the username reservation session id cookie exists;
+if (Is existed) then (Yes)
+else (No)
+  :Create and set a new username reservation session id cookie;
+endif
+
+:Check whether the username is reserved in Username-Reservation-Collection;
+if (Is reserved) then (Yes)
+  :Check whether the username is reserved by current username reservation session id;
+  if (Is reserved) then (Yes)
+    :Update the expiration time of the username reservation;
+    :Return the username is available;
+    stop
+  else (No)
+    :Check whether the reservation is expired;
+    if (Is expired) then (Yes)
+      :Replace the username reservation with a new one;
+      :Return the username is available;
+      stop
+    else (No)
+     :Return the username is not available;
+      stop
+    endif
+  endif
+
+else (No)
+  :Check whether the username is taken by the consumer collection;
+
+  if (Is taken) then (Yes)
+    :Return the username is not available;
+    stop
+  else (No)
+    :Insert a new username reservation;
+    :Return the username is available;
+    stop
+  endif
+endif
+@enduml

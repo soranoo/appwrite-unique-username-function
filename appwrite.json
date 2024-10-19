@@ -47,9 +47,12 @@
             "enabled": true,
             "logging": true,
             "runtime": "node-18.0",
-            "scopes": ["documents.read", "documents.write"],
+            "scopes": [
+                "documents.read",
+                "documents.write"
+            ],
             "events": [
-                "databases.*.collections.6712b602001d009e6179"
+                "databases.*.collections.6712b602001d009e6179.documents.*.create"
             ],
             "schedule": "",
             "timeout": 15,
@@ -111,7 +114,19 @@
                     "default": null
                 }
             ],
-            "indexes": []
+            "indexes": [
+                {
+                    "key": "index_1",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "reservationSessionId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
         }
     ]
 }

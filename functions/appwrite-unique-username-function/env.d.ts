@@ -6,7 +6,7 @@ declare global {
       APPWRITE_DATABASE_ID: string;
 
       /**
-       * A collection ID for storing usernames that are already taken
+       * A collection ID for storing usernames that will be consumed
        */
       APPWRITE_COLLECTION_ID: string;
       

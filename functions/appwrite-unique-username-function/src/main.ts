@@ -2,7 +2,7 @@ import type { Models } from "node-appwrite";
 
 import { Client, Databases, ID } from "node-appwrite";
 import cookie from "cookie";
-import { usernameReservationSchema, usernameSchema } from "./schames.js";
+import { usernameSchema } from "./schames.js";
 import { COOKIES } from "./constants.js";
 import { checkIsUsernameReserved, checkIsUsernameUsed, deleteReservation, getReservationSessionIdByHashedUsername, hashUsername, insertReservation, updateReservation } from "./utils.js";
 
