@@ -13,15 +13,15 @@ This function allows you to check if a username is available or not with real-ti
 ## 🛠️ How It Work
 ![Unique Username Function](/docs/workflow.svg)
 
-> [NOTE]\
+> [!NOTE]\
 > A reservation will be expired after 5 minutes. If the user submits the form within 5 minutes, the reservation will be extended for another 5 minutes, otherwise, the reservation will be expired and the username will be available for other users.
 
-> [NOTE]\
+> [!NOTE]\
 > The unused reservation will be automatically deleted once the reservation maker is added to the consumer collection.
 
 To make sure the username is unique, the reservation collection is using hashed username as the document ID. This way, the username will be unique and able to handle concurrent checking.
 
-> [IMPORTANT]\
+> [!IMPORTANT]\
 > It is highly recommended to check the username availability again when the user submits the form.
 
 ## 🚀 Deploy
