@@ -6,10 +6,7 @@ import { usernameSchema } from "./schames.js";
 import { COOKIES } from "./constants.js";
 import { checkIsUsernameReserved, checkIsUsernameUsed, deleteReservation, getReservationSessionIdByHashedUsername, hashUsername, insertReservation, updateReservation } from "./utils.js";
 
-// This Appwrite function will be executed every time your function is triggered
 export default async ({ req, res, log, error }: any) => {
-  // You can use the Appwrite SDK to interact with other services
-  // For this example, we're using the Users service
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT || "")
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID || "")
@@ -20,20 +17,8 @@ export default async ({ req, res, log, error }: any) => {
   log(`Event: ${event}`);
 
   const cookies = cookie.parse(req.headers.cookie || "");
-  log(`Cookies: ${JSON.stringify(cookies)}`);
 
-  // log(req.bodyText); // Raw request body, contains request data
-  // // log(JSON.stringify(req.bodyJson));    // Object from parsed JSON request body, otherwise string
-  // log(JSON.stringify(req.headers || {})); // String key-value pairs of all request headers, keys are lowercase
-  // log(req.scheme); // Value of the x-forwarded-proto header, usually http or https
-  // log(req.method); // Request method, such as GET, POST, PUT, DELETE, PATCH, etc.
-  // log(req.url); // Full URL, for example: http://awesome.appwrite.io:8000/v1/hooks?limit=12&offset=50
-  // log(req.host); // Hostname from the host header, such as awesome.appwrite.io
-  // log(req.port); // Port from the host header, for example 8000
-  // log(req.path); // Path part of URL, for example /v1/hooks
-  // log(req.queryString); // Raw query params string. For example "limit=12&offset=50"
-  // // log(JSON.stringify(req.query));       // Parsed query params. For example, req.query.limit
-
+  // Delete the reservation once a document is created in the username consumer collection
   if (/databases\.[\w\d]+\.collections\.[\w\d]+/.test(event) && req.method === "POST") {
     if (typeof req.bodyText !== "string") {
       return res.json({}, 400);
@@ -60,6 +45,7 @@ export default async ({ req, res, log, error }: any) => {
     return res.json({}, 200);
   }
 
+  // Check if the username is available
   if (req.path !== "/check") {
     return res.json({}, 404);
   } else if (req.method !== "POST") {
