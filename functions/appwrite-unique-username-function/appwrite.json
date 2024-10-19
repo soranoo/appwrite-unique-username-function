@@ -1,0 +1,26 @@
+{
+  "projectId": "6710111a59e0df47198a",
+  "functions": [
+    {
+      "$id": "6710259400075a51b8e7",
+      "name": "appwrite-unique-username-function",
+      "runtime": "node-18.0",
+      "execute": [
+        "any"
+      ],
+      "events": ["users.*.create"],
+      "scopes": [
+        "guests.read",
+        "guests.create",
+        "guests.update"
+      ],
+      "schedule": "",
+      "timeout": 15,
+      "enabled": true,
+      "logging": true,
+      "entrypoint": "dist/main.js",
+      "commands": "npm install && npm run build",
+      "path": "."
+    }
+  ]
+}

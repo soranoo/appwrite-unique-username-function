@@ -1,0 +1,117 @@
+{
+    "projectId": "6710111a59e0df47198a",
+    "projectName": "appwrite-unique-username-function",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "functions": [
+        {
+            "$id": "6710259400075a51b8e7",
+            "execute": [
+                "any"
+            ],
+            "name": "appwrite-unique-username-function",
+            "enabled": true,
+            "logging": true,
+            "runtime": "node-18.0",
+            "scopes": ["documents.read", "documents.write"],
+            "events": [
+                "databases.*.collections.6712b602001d009e6179"
+            ],
+            "schedule": "",
+            "timeout": 15,
+            "entrypoint": "dist/main.js",
+            "commands": "npm install && npm run build",
+            "path": "functions/appwrite-unique-username-function"
+        }
+    ],
+    "databases": [
+        {
+            "$id": "6712b5ea001b76848c19",
+            "name": "main",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "6712b602001d009e6179",
+            "$permissions": [],
+            "databaseId": "6712b5ea001b76848c19",
+            "name": "profiles",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "username",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 100,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "6712b6290012035ffb00",
+            "$permissions": [],
+            "databaseId": "6712b5ea001b76848c19",
+            "name": "username-reservations",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "reservationSessionId",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 36,
+                    "default": null
+                },
+                {
+                    "key": "expireAt",
+                    "type": "integer",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9223372036854775807,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        }
+    ]
+}
