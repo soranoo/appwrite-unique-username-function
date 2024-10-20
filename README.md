@@ -74,7 +74,8 @@ To make sure the username is unique, the reservation collection is using hashed 
 3. If you create the consumer collection manually, make sure to edit the `events` in the function to point to the correct collection ID in the `appwrite.json` file.
     ```json
     "events": [
-        "databases.*.collections.<your_collection_id>.documents.*.create"
+        "databases.*.collections.<your_collection_id>.documents.*.create",
+        "databases.*.collections.<your_collection_id>.documents.*.update"
       ],
     ```
 

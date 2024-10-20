@@ -52,7 +52,8 @@
                 "documents.write"
             ],
             "events": [
-                "databases.*.collections.6712b602001d009e6179.documents.*.create"
+                "databases.*.collections.6712b602001d009e6179.documents.*.create",
+                "databases.*.collections.6712b602001d009e6179.documents.*.update"
             ],
             "schedule": "",
             "timeout": 15,

@@ -58,14 +58,14 @@ export default async ({ req, res, log, error }: any) => {
   try {
     const username = usernameSchema.parse(unsafeUsername);
 
-    let reservationSessionId = cookies[COOKIES.USERNAME_RESERVATION];
+    let reservationSessionId = cookies[COOKIES.USERNAME_RESERVATION] ?? req.headers["x-username-reservation-session-id"];
+    log(`Reservation Session ID: ${reservationSessionId}`);
 
     if (!reservationSessionId) {
       // If no session id is found, create a new one
       const newSessionId = ID.unique();
       reservationSessionId = newSessionId;
       cookiesToSet["Set-Cookie"] = cookie.serialize(COOKIES.USERNAME_RESERVATION, newSessionId, {
-        expires: new Date(Date.now() + 1000 * 60 * 5), // 5 minutes
         httpOnly: true,
         secure: true,
         sameSite: "lax",
