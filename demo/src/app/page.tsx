@@ -49,6 +49,7 @@ export default function HomePage() {
           endContent={isChecking ? <Spinner /> : null}
           onChange={(e) => {
             setUsername(e.target.value);
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             debouncedCheckUsernameAvailability(e.target.value);
           }}
         />
