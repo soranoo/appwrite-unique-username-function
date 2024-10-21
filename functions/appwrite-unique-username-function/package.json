@@ -16,6 +16,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@itznotabug/aft": "^0.0.2",
     "@types/node": "^22.7.6",
     "prettier": "^3.2.5"
   }

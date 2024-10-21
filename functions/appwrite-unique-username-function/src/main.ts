@@ -1,4 +1,8 @@
 import type { Models } from "node-appwrite";
+import type {
+  RuntimeContext,
+  RuntimeOutput,
+} from "@itznotabug/aft";
 
 import { Client, Databases, ID } from "node-appwrite";
 import cookie from "cookie";
@@ -6,7 +10,7 @@ import { usernameSchema } from "./schames.js";
 import { COOKIES } from "./constants.js";
 import { checkIsUsernameReserved, checkIsUsernameUsed, deleteReservation, getReservationSessionIdByHashedUsername, hashUsername, insertReservation, updateReservation } from "./utils.js";
 
-export default async ({ req, res, log, error }: any) => {
+export default async ({ req, res, log, error }: RuntimeContext): Promise<RuntimeOutput> => {
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT || "")
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID || "")
