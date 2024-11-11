@@ -1,3 +1,3 @@
 export const COOKIES = {
-  USERNAME_RESERVATION: "ur",
+  USERNAME_RESERVATION: "ursid",
 } as const;
